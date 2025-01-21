@@ -9,6 +9,8 @@
  *    Released by T-Engine Forum(http://www.t-engine.org/) at 2012/12/12.
  *    Modified by T-Engine Forum at 2013/03/08.
  *    Modified by TRON Forum(http://www.tron.org/) at 2015/06/04.
+ *    Modified by TRON Forum(https://www.tron.org/) at 2021/03/29.
+ *    Modified by TRON Forum(https://www.tron.org/) at 2025/01/21.
  *
  *----------------------------------------------------------------------
  */
@@ -714,7 +716,7 @@ LOCAL ER reloc1( ELF_LoadInfo *eli, LoadSource *ldr, W rtbl, W rtblsz, W lofs,
 		  	break;
 
 		  case R_MIPS_LO16:
-			if ( ahi_info == NULL) { err = EX_NOEXEC; goto err_ret2; }
+			if ( ahi_info == NULL) { er = EX_NOEXEC; goto err_ret2; }
 			if ( ahi_infoused == 0 ) {
 				ahi_infoused = 1;
 			  	for ( ind = 0; ind < ahi_infonext; ind++ ) {

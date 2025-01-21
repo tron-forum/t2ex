@@ -8,6 +8,8 @@
  *
  *    Released by T-Engine Forum(http://www.t-engine.org/) at 2012/12/12.
  *    Modified by TRON Forum(http://www.tron.org/) at 2015/06/04.
+ *    Modified by TRON Forum(http://www.tron.org/) at 2020/11/09.
+ *    Modified by TRON Forum(https://www.tron.org/) at 2025/01/21.
  *
  *----------------------------------------------------------------------
  */
@@ -176,12 +178,14 @@ LOCAL int get( const char c, struct tm *t, const char **p, unsigned int* flags )
 		if (er < 0 || er > 6) return -1;
 		t -> tm_wday = er;
 		*flags |= UPD_DATE|HAVE_WDAY;
+		break;
 	case 'j' :
 		/* day of the year [001,366] */
 		er = parse_uint(p);
 		if (er < 1 || er > 366) return -1;
 		t -> tm_yday = (er - 1);
 		*flags |= UPD_DATE|HAVE_YDAY;
+		break;
 	case 'Y' :
 		/* year */
 		er = parse_uint(p);

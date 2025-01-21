@@ -8,6 +8,8 @@
  *
  *    Released by T-Engine Forum(http://www.t-engine.org/) at 2012/12/12.
  *    Modified by TRON Forum(http://www.tron.org/) at 2015/06/04.
+ *    Modified by TRON Forum(http://www.tron.org/) at 2015/07/15.
+ *    Modified by TRON Forum(https://www.tron.org/) at 2025/01/21.
  *
  *----------------------------------------------------------------------
  */
@@ -102,7 +104,7 @@ LOCAL BOOL chkDST( const struct tm* tm, union dsttimespec tspec, BOOL start )
 
 Inline BOOL isDST( struct tm* tm, const struct tzinfo* tz )
 {
-	if (tz->daylight) {
+	if (tz->daylight == 0) {
 		return FALSE;
 	}
 

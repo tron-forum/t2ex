@@ -8,6 +8,8 @@
  *
  *    Released by T-Engine Forum(http://www.t-engine.org/) at 2012/12/12.
  *    Modified by TRON Forum(http://www.tron.org/) at 2015/06/04.
+ *    Modified by TRON Forum(http://www.tron.org/) at 2015/07/15.
+ *    Modified by TRON Forum(https://www.tron.org/) at 2025/01/21.
  *
  *----------------------------------------------------------------------
  */
@@ -84,16 +86,23 @@ EXPORT ER dt_gmtime_us( SYSTIM_U tim_u, struct tm* result )
 
 	result->tm_year += 400 * (d / days400);
 	d %= days400;
-	result->tm_year += 100 * (d / days100);
-	d %= days100;
+
+	for (i = 0; i < 3 && d >= days100; i++ ) {
+		result->tm_year += 100;
+		d -= days100;
+	}
+
 	result->tm_year += 4 * (d / days4);
 	d %= days4;
-	result->tm_year += (d / days1);
-	d %= days1;
+
+	for (i = 0; i < 3 && d >= days1; i++ ) {
+		result->tm_year++;
+		d -= days1;
+	}
 
 	result->tm_yday = d;
 	for (i = 0; i < 12; i++) {
-		md = (i == 1 && isleap(result->tm_year)) ? 29 : _dt_mdays[i];
+		md = (i == 1 && isleap(result->tm_year + 1900)) ? 29 : _dt_mdays[i];
 		if (d < md) {
 			break;
 		}
